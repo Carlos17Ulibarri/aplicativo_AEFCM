@@ -2,12 +2,19 @@ const pool = require('../../src/dbConnection');
 
 const crudSchools = {};
 
-crudSchools.createSchool = async(req,res)=>{
+crudSchools.updateSchool = async(req,res)=>{
+    const {schoolId} = req.params;
+    
     const {
         schoolKeyCode,
         schoolName,
         schoolNoDirectors,
         schoolNoSupportStaff,
+        schoolIdAddress,
+        addressNoExternal,
+        addressNoInternal,
+        addressColony,
+        addressIdCityHall,
         schoolIdTurn,
         schoolIdType,
         schoolIdLevel,
@@ -17,20 +24,20 @@ crudSchools.createSchool = async(req,res)=>{
         schoolIdGeneralDirection,
         schoolIdSf911,
         schoolIdAefcmSupport,
-        schoolIdProgram,
-        addressNoExternal,
-        addressNoInternal,
-        addressColony,
-        addressIdCityHall,
-        schoolIdDegree,
-        schoolIdNoPerGrade
+        schoolIdProgram
     } = req.body;
 
     const data = {
+        schoolId,
         schoolKeyCode,
         schoolName,
         schoolNoDirectors,
         schoolNoSupportStaff,
+        schoolIdAddress,
+        addressNoExternal,
+        addressNoInternal,
+        addressColony,
+        addressIdCityHall,
         schoolIdTurn,
         schoolIdType,
         schoolIdLevel,
@@ -40,23 +47,23 @@ crudSchools.createSchool = async(req,res)=>{
         schoolIdGeneralDirection,
         schoolIdSf911,
         schoolIdAefcmSupport,
-        schoolIdProgram,
-        addressNoExternal,
-        addressNoInternal,
-        addressColony,
-        addressIdCityHall,
-        schoolIdDegree,
-        schoolIdNoPerGrade
+        schoolIdProgram
     };
 
-    const query = 'CALL createSchool(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    const query = 'CALL updateSchool(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     
     try {
         await pool.query(query,[
+            data.schoolId,
             data.schoolKeyCode,
             data.schoolName,
             data.schoolNoDirectors,
             data.schoolNoSupportStaff,
+            data.schoolIdAddress,
+            data.addressNoExternal,
+            data.addressNoInternal,
+            data.addressColony,
+            data.addressIdCityHall,
             data.schoolIdTurn,
             data.schoolIdType,
             data.schoolIdLevel,
@@ -66,21 +73,15 @@ crudSchools.createSchool = async(req,res)=>{
             data.schoolIdGeneralDirection,
             data.schoolIdSf911,
             data.schoolIdAefcmSupport,
-            data.schoolIdProgram,
-            data.addressNoExternal,
-            data.addressNoInternal,
-            data.addressColony,
-            data.addressIdCityHall,
-            data.schoolIdDegree,
-            data.schoolIdNoPerGrade
+            data.schoolIdProgram
         ]);
         res.status(200).json({
-            msg:'Escuela creada',
+            msg:'Escuela actualizada',
             status:true
         });
     } catch (error) {
         res.status(404).json({
-            msg:'Error: Escuela no creada',
+            msg:'Error: Escuela no actualizada',
             status:true,
             err:error
         });

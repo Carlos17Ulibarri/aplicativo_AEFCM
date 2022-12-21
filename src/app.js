@@ -1,6 +1,7 @@
 const express =  require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const routesSchool = require('../routes/taskRoutesSchool');
 
 const app = express();
 
@@ -27,8 +28,8 @@ app.use(express.json({extend:true}));
 
 app.use(morgan('dev'));
 
-const mainRoute = '/api/asterisk';
-  //app.use(mainRoute, routesUsers());
+const mainRoute = '/api/aefcm';
+app.use(mainRoute, routesSchool());
 
 
 module.exports = app ;
