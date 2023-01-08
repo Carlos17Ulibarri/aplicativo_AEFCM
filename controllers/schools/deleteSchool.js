@@ -5,10 +5,12 @@ const crudSchools = {};
 crudSchools.deleteSchool = async(req,res)=>{
     const {schoolId} = req.params;
 
+    const data = { schoolId };
+
     const query = 'CALL deleteSchool(?)';
 
     try {
-        await pool.query(query,[schoolId]);
+        await pool.query(query,[data.schoolId]);
         res.status(200).json({
             msg:'Escuela eliminada',
             status:true
