@@ -1,4 +1,4 @@
-# Aplicativo AEFCM - Servicio Social (Junio - Septiembre 2022)
+# Aplicativo AEFCM - Servicio Social (Marzo - Septiembre 2022)
 
 ## Proyecto diagnóstico por alcaldía 2022
 ### Tecnologías:
